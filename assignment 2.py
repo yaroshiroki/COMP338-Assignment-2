@@ -16,17 +16,23 @@ class Convolutional_Neural_Network(nn.Module):
         #hidden layer 1
         self.convolutional_layer1 = nn.Conv2d(kernel_size = [7, 7], stride = 2, padding = 3, in_channels = 3, out_channels = 64)
 
+        #applying batch normalisation on our first hidden layer
+        self.convolutional_layer1_batch = nn.BatchNorm2d(64)
+
+        #applying the relu function on our first hidden layer
+        self.convolutional_layer1_relu = nn.ReLU(inplace = True)
+        
         #hidden layer 2
         self.convolutional_layer2 = nn.MaxPool2d(kernel_size = [3, 3], stride = 2, padding = 0)
 
         #hidden layer 3
         self.convolutional_layer3 = nn.Conv2d(kernel_size = [3, 3], stride = 1, padding = 1, in_channels = 3, out_channels = 64)
 
-        #relu layer
-        self.relu = nn.ReLU(inplace=True)
-
         #batch normalization layer
-        self.batch = nn.BatchNorm2d(3)
+        self.convolutional_layer3_batch = nn.BatchNorm2d(64)
+        
+        #relu layer
+        self.convolutional_layer3_relu = nn.ReLU(inplace = True)
         
         #hidden layer 4
         self.convolutional_layer4 = nn.MaxPool2d(kernel_size = [3, 3], stride = 2, padding = 0)

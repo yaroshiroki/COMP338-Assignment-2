@@ -1,13 +1,14 @@
 import torch
 import numpy as np
 import torch.nn as nn
+from torch.nn import CrossEntropyLoss
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 from torch.optim import Adam, SGD
 
 
-
+#Task 1
 class Convolutional_Neural_Network(nn.Module):
     def __init__(self, in_channels = 3, num_classes = 10):
         super(Convolutional_Neural_Network, self).__init__()
@@ -43,5 +44,20 @@ class Convolutional_Neural_Network(nn.Module):
         #softmax layer
         self.softmax = nn.Softmax(dim=None)
 
+#define and print the model
 cnn = Convolutional_Neural_Network()
 print(cnn)
+
+#Task 2
+#define the optimizer
+#CHANGE LR and speak abour it (lr = learning rate)
+#try 0.01, 0.001, 0.0001, 0.00001 then discuss
+optimizer = Adam(cnn.parameters(), lr = 0.01)
+#define the loss function
+loss = CrossEntropyLoss()
+
+#check GPU is able to work
+if torch.cuda.is_available():
+    cnn = cnn.cuda()
+    loss = loss.cuda()
+
